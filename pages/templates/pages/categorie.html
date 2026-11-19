@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ category.name }} - elfighter store{% endblock %}
+
+{% block content %}
+    <section class="category-page" aria-labelledby="category-title">
+        <a class="back-link" href="{% url 'pages:accueil' %}#categories">← Retour aux catégories</a>
+        <div class="category-page__intro">
+            <img src="{% static category.image %}" alt="">
+            <div class="category-page__intro-content">
+                <p class="eyebrow">{{ category.eyebrow }}</p>
+                <h1 id="category-title">{{ category.name }}</h1>
+                <p>{{ category.description }}</p>
+            </div>
+        </div>
+        <form class="category-filter-form" method="get" action="{{ category_path }}" aria-label="Filtrer les produits">
+            {% if category_type_choices|length > 1 %}
+                <div class="category-filter-form__field">
+                    <label for="{{ category_filter_form.type.id_for_label }}">Type</label>
+                    {{ category_filter_form.type }}
+                    {{ category_filter_form.type.errors }}
+                </div>
+            {% endif %}
+            {% if category_brand_choices|length > 1 %}
+                <div class="category-filter-form__field">
+                    <label for="{{ category_filter_form.brand.id_for_label }}">Marque</label>
+                    {{ category_filter_form.brand }}
+                    {{ category_filter_form.brand.errors }}
+                </div>
+            {% endif %}
+            {% if category_color_choices|length > 1 %}
+                <div class="category-filter-form__field">
+                    <label for="{{ category_filter_form.color.id_for_label }}">Couleur</label>
+                    {{ category_filter_form.color }}
+                    {{ category_filter_form.color.errors }}
+                </div>
+            {% endif %}
+            <div class="category-filter-form__field category-filter-form__field--search">
+                <label for="{{ category_filter_form.query.id_for_label }}">Rechercher un nom, modèle ou couleur</label>
+                {{ category_filter_form.query }}
+                {{ category_filter_form.query.errors }}
+            </div>
+            <div class="category-filter-form__actions">
+                <button class="button button--primary" type="submit">Appliquer les filtres <span aria-hidden="true">→</span></button>
+                <a href="{{ category_path }}">Effacer</a>
+            </div>
+        </form>
+        <div class="product-showcase{% if category_slug == 'gants' or category_slug == 'protections' or category_slug == 'accessoires' or category_slug == 'pack-complet' %} product-showcase--dark{% endif %}">
+            <div class="section-heading product-heading">
+                <div>
+                    <p class="eyebrow">NOTRE SÉLECTION</p>
+                    <h2>Les produits</h2>
+                </div>
+                <p>{% if category.price_note %}{{ category.price_note }}{% else %}Contactez-nous pour connaître les tailles, les disponibilités et les prix.{% endif %}</p>
+            </div>
+            <p class="product-showcase__note">Tailles, disponibilité et modalités à confirmer avec notre équipe avant commande.</p>
+            {% if products %}
+                <div class="product-grid">
+                    {% for product in products %}
+                        {% include "pages/partials/product_card.html" with product=product %}
+                    {% endfor %}
+                </div>
+            {% elif category_filter_form.errors %}
+                <p class="category-filter__message" role="alert">Un filtre sélectionné n’est pas disponible pour cette catégorie. Corrigez-le ou effacez les filtres.</p>
+            {% else %}
+                <p class="category-filter__message">Aucun produit ne correspond à votre recherche. Essayez un autre filtre.</p>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

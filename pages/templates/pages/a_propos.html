@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}À propos - elfighter store{% endblock %}
+
+{% block content %}
+<section class="about-page" aria-labelledby="about-title">
+    <div class="about-page__intro">
+        <p class="eyebrow">À PROPOS DE ELFIGHTER STORE</p>
+        <h1 id="about-title">Votre équipement, du premier round au dernier.</h1>
+        <p>Gants, protections et accessoires pour vous accompagner à chaque entraînement, quel que soit votre niveau.</p>
+    </div>
+    <div class="about-page__content">
+        <div>
+            <p class="eyebrow">NOTRE SÉLECTION</p>
+            <h2>Le matériel essentiel pour avancer.</h2>
+            <p>Nous proposons une sélection d’équipements de boxe et de sports de combat. Notre objectif : vous aider à trouver le matériel adapté à votre pratique, avec les détails de disponibilité et de commande confirmés directement avec notre équipe.</p>
+        </div>
+        <nav class="about-page__categories" aria-label="Découvrir nos catégories">
+            <a href="{% url 'pages:gants' %}">Gants de boxe <span aria-hidden="true">→</span></a>
+            <a href="{% url 'pages:protections' %}">Protections <span aria-hidden="true">→</span></a>
+            <a href="{% url 'pages:accessoires' %}">Accessoires <span aria-hidden="true">→</span></a>
+            <a href="{% url 'pages:pack_complet' %}">Pack complet <span aria-hidden="true">→</span></a>
+        </nav>
+    </div>
+    <section class="about-page__contact" aria-labelledby="about-contact-title">
+        <div>
+            <p class="eyebrow">UNE QUESTION ?</p>
+            <h2 id="about-contact-title">Parlons de votre équipement.</h2>
+            <p>Demandez les tailles, la disponibilité et les modalités avant de commander.</p>
+        </div>
+        <a class="button button--primary" href="https://wa.me/212723368026" target="_blank" rel="noopener noreferrer">
+            Nous contacter sur WhatsApp <span aria-hidden="true">→</span>
+        </a>
+    </section>
+</section>
+{% endblock %}

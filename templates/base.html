@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}elfighter store{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'pages/styles.css' %}">
+    <script src="{% static 'pages/site-animations.js' %}" defer></script>
+</head>
+<body>
+    <header>
+        <div class="site-header">
+            <nav class="social-links" aria-label="Réseaux sociaux">
+                <a class="social-link" href="https://www.instagram.com/elfighterstore/" target="_blank" rel="noopener noreferrer" aria-label="Instagram elfighter store">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <circle class="social-icon__dot" cx="18" cy="6" r="1"></circle>
+                    </svg>
+                </a>
+                <a class="social-link social-link--whatsapp" href="https://wa.me/212723368026" target="_blank" rel="noopener noreferrer" aria-label="Contacter elfighter store sur WhatsApp">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M20.5 11.8a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.3-5a8.4 8.4 0 1 1 16.2-3.7Zm-8.4-6.7a6.7 6.7 0 0 0-5.7 10.2l.3.5-.8 2.8 2.9-.8.5.3a6.7 6.7 0 1 0 2.8-13Zm3.8 9.6c-.2-.1-1.3-.7-1.5-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8.9-.1.1-.3.2-.5.1-1.4-.7-2.3-1.3-3.2-2.9-.2-.3.2-.4.6-1 .1-.2.1-.3 0-.5l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.5.1-.7.3-.8.8-1 1.7-.7 2.7.4 1.1 1.4 2.4 2.7 3.4 1.5 1.1 3.4 1.9 4.5 1.5.7-.3 1.2-.9 1.3-1.5.1-.2 0-.3-.2-.4Z"></path>
+                    </svg>
+                </a>
+            </nav>
+            <a class="brand" href="{% url 'pages:accueil' %}">
+                <img src="{% static 'pages/elfighter-store-logo.png' %}" alt="elfighter store">
+            </a>
+            <nav class="primary-nav" aria-label="Navigation principale">
+                <a href="{% url 'pages:accueil' %}">Accueil</a>
+                <a href="{% url 'pages:a_propos' %}">À propos</a>
+                <a class="header-cta" href="https://wa.me/212723368026" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            </nav>
+        </div>
+        <nav class="category-nav" aria-label="Catégories de produits">
+            <a href="{% url 'pages:gants' %}">Gants de boxe</a>
+            <a href="{% url 'pages:protections' %}">Protections</a>
+            <a href="{% url 'pages:accessoires' %}">Accessoires</a>
+            <a href="{% url 'pages:pack_complet' %}">Pack complet</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <dialog class="image-viewer" aria-label="Photo du produit en plein écran">
+        <div class="image-viewer__content">
+            <button class="image-viewer__close" type="button" aria-label="Fermer la photo agrandie">×</button>
+            <img class="image-viewer__image" alt="">
+            <p class="image-viewer__caption"></p>
+        </div>
+    </dialog>
+    <footer>
+        <div class="site-footer__inner">
+            <div class="site-footer__brand">
+                <strong>elfighter store</strong>
+                <span>Équipement de boxe pour votre prochain round.</span>
+            </div>
+            <nav class="site-footer__categories" aria-label="Liens des catégories">
+                <a href="{% url 'pages:gants' %}">Gants</a>
+                <a href="{% url 'pages:protections' %}">Protections</a>
+                <a href="{% url 'pages:accessoires' %}">Accessoires</a>
+                <a href="{% url 'pages:pack_complet' %}">Packs</a>
+            </nav>
+            <div class="site-footer__contact">
+                <a href="https://wa.me/212723368026" target="_blank" rel="noopener noreferrer">Nous contacter sur WhatsApp</a>
+                <a href="https://www.instagram.com/elfighterstore/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <span>Pour les tailles, la disponibilité et les modalités de commande, contactez notre équipe.</span>
+            </div>
+        </div>
+        <p class="site-footer__copyright">elfighter store · ESMA Marrakech</p>
+    </footer>
+</body>
+</html>

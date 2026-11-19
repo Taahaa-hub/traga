@@ -1,0 +1,33 @@
+{% load static %}
+
+<article class="product-card{% if product.image or product.image_missing %} product-card--illustrated{% endif %}">
+    {% if product.image %}
+        <button class="product-card__image-button" type="button" data-image-viewer data-image-caption="{{ product.name }}{% if product.variant %} — {{ product.variant }}{% endif %}" aria-label="Agrandir la photo : {{ product.name }}{% if product.variant %} — {{ product.variant }}{% endif %}">
+            <img class="product-card__image" src="{% static product.image %}" alt="" loading="lazy" decoding="async">
+        </button>
+    {% elif product.image_missing %}
+        <div class="product-card__image-placeholder" aria-label="Photo bientôt disponible">Photo bientôt disponible</div>
+    {% endif %}
+    <span class="product-card__label">{{ product.display_brand }}</span>
+    <h3>{{ product.name }}</h3>
+    {% if product.variant %}<p class="product-card__variant">{{ product.variant }}</p>{% endif %}
+    {% if product.description %}<p>{{ product.description }}</p>{% endif %}
+    <p class="product-card__price{% if product.original_price %} product-card__price--sale{% endif %}">
+        {% if product.price %}
+            {% if product.original_price %}
+                <del class="product-card__original-price">{{ product.original_price }} DH</del>
+                <span class="product-card__sale-price">{{ product.price }} DH</span>
+            {% else %}
+                {{ product.price }} DH
+            {% endif %}
+        {% else %}
+            Prix sur demande
+        {% endif %}
+    </p>
+    <a class="product-card__details" href="{{ product.detail_url }}">
+        Voir la fiche produit <span aria-hidden="true">→</span>
+    </a>
+    <a class="button button--primary" href="{{ product.order_url }}" target="_blank" rel="noopener noreferrer">
+        Commander sur WhatsApp <span aria-hidden="true">→</span>
+    </a>
+</article>
